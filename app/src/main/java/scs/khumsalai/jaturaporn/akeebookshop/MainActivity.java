@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     //อันนี้ พิมพ์เอง
     public void clickSignupMain(View view) {
-        startActivity(new Intent(MainActivity.this,SignUpActivity.class));  // เพื่อสั่งให้ เมื่อคลิกแล้วให้ Intent  ไปที่อีก Activity หนึ่ง ที่ชื่อ SignupActivity
+        startActivity(new Intent(MainActivity.this, SignUpActivity.class));  // เพื่อสั่งให้ เมื่อคลิกแล้วให้ Intent  ไปที่อีก Activity หนึ่ง ที่ชื่อ SignupActivity
 
+    }
 }   // Main Class

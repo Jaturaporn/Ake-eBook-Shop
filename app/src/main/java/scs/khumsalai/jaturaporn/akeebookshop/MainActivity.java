@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.appdatasearch.GetRecentContextCall;
 import com.google.android.gms.appindexing.Action;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         //Explicit
         // ทำ Constructure คือการทำ Method ที่ขื่อเดียวกับ class
         private Context context;// ใช้ในการเชื่อมต่อ
-        private String myURL, myUserString, myPasswordString; // มีค่าเท่ากับตัวแปร ใน Url
+        private String myURL, myUserString, myPasswordString,truePassword;     // มีค่าเท่ากับตัวแปร ใน Url
         private boolean statusABoolean = true;
 
 
@@ -98,17 +99,31 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray jsonArray = new JSONArray(s);
                 for (int i=0;i<jsonArray.length();i +=1) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    if (myUserString.equals(jsonObject.get("User"))) {
-                        statusABoolean =false;
 
-                    } else if (statusABoolean) {
-                        MyAlert myAlert = new MyAlert();
-                        myAlert.myDialog(context,"ไม่พบ User นี้","ไม่มี"+ myUserString + "ในฐานข้อมูลผู้ใช้");
-                    } else {
+                    if (myUserString.equals(jsonObject.get("User"))) {
+
+                        statusABoolean =false;
+                        truePassword = jsonObject.getString("Password");
 
                     }
 
+
                 }   // for
+
+                if (statusABoolean) {
+                    MyAlert myAlert = new MyAlert();
+                    myAlert.myDialog(context,"ไม่พบ User นี้","ไม่มี"+ myUserString + "ในฐานข้อมูลผู้ใช้");
+                } else if (myPasswordString.equals(truePassword)) {
+
+                    Toast.makeText(context,"Welcome",Toast.LENGTH_SHORT).show();
+
+
+                } else {
+                    MyAlert myAlert =new MyAlert();
+                    myAlert.myDialog(context,"Wrong Password",
+                            "Please Try Again");
+                }
+
 
             } catch (Exception e) {
                 Log.d("ShopV1", "e onPost-->" + e.toString());

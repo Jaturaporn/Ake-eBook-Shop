@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
         //Explicit
         // ทำ Constructure คือการทำ Method ที่ขื่อเดียวกับ class
         private Context context;// ใช้ในการเชื่อมต่อ
-        private String myURL, myUserString, myPasswordString,truePassword;     // มีค่าเท่ากับตัวแปร ใน Url
+        private String myURL, myUserString, myPasswordString,
+                truePassword,loginNameString,loginSurnameString;     // มีค่าเท่ากับตัวแปร ใน Url
         private boolean statusABoolean = true;
 
 
@@ -104,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
 
                         statusABoolean =false;
                         truePassword = jsonObject.getString("Password");
+                        loginNameString = jsonObject.getString("Name");
+                        loginSurnameString = jsonObject.getString("Surname");
+
 
                     }
 
@@ -115,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     myAlert.myDialog(context,"ไม่พบ User นี้","ไม่มี"+ myUserString + "ในฐานข้อมูลผู้ใช้");
                 } else if (myPasswordString.equals(truePassword)) {
 
-                    Toast.makeText(context,"Welcome",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Welcome" + loginNameString + " " + loginSurnameString ,Toast.LENGTH_SHORT).show();
 
 
                 } else {

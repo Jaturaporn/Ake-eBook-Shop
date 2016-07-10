@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     //Explicit
     private EditText userEditText, passwordEditText;
     private String userString, passwordString;
-    private static final String urlJSON = "http://swiftcodingthai.com/9july/get_user_AKE.php";
+    private String urlJSON;
 
 
     @Override
@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         userEditText = (EditText) findViewById(R.id.editText5);
         passwordEditText = (EditText) findViewById(R.id.editText6);
 
+        MyConstant myConstant = new MyConstant();
+        urlJSON = myConstant.getUrlJSONuser();
 
     }   // Main Method
 

@@ -120,8 +120,13 @@ public class MainActivity extends AppCompatActivity {
                 } else if (myPasswordString.equals(truePassword)) {
 
                     Toast.makeText(context,"Welcome" + loginNameString + " " + loginSurnameString ,Toast.LENGTH_SHORT).show();
+                    // Intent แล้วโยนดาต้าไปด้วย
+                    Intent intent = new Intent(MainActivity.this,ServiceActivity.class);
+                    intent.putExtra("Name", loginNameString);
+                    intent.putExtra("Surname", loginSurnameString);
 
-
+                    startActivity(intent);
+                    finish();
                 } else {
                     MyAlert myAlert =new MyAlert();
                     myAlert.myDialog(context,"Wrong Password",
